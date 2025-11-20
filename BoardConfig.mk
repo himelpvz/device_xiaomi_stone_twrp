@@ -227,3 +227,21 @@ SHRP_HAS_RECOVERY_PARTITION := true
 
 SHRP_AB := true
 
+# IMPORTANT FLAGS SHRP
+SHRP_EDL_MODE := 1
+
+# Internal storage path
+# Default (if not set): /sdcard
+SHRP_INTERNAL := /sdcard
+
+# External SDcard path
+# Default (if not set): /
+SHRP_EXTERNAL := /external_sd
+
+# USB OTG path
+# Default (if not set): /
+SHRP_OTG := /usb_otg
+
+# Flashlight: (0 = disable, 1 = enable)
+# Default (if not set): 0
+SHRP_FLASH := 1

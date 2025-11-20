@@ -204,44 +204,30 @@ OF_CLOCK_POS := 1
 # TWRP Debug Flags
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
-#SHRP flag
 
-
-
-
-SHRP_DEVICE_CODE := stone
-
-SHRP_PATH := device/xiaomi/stone
-
-
+# SHRP flags
+SHRP_PATH := $(DEVICE_PATH)
 SHRP_MAINTAINER := Himel_Pvz
-
-
-SHRP_REC_TYPE := Treble
-
-SHRP_DEVICE_TYPE := A/B
-
-SHRP_REC := /dev/block/bootdevice/by-name/recovery
-
-SHRP_HAS_RECOVERY_PARTITION := true
-
-SHRP_AB := true
-
-# IMPORTANT FLAGS SHRP
-SHRP_EDL_MODE := 1
-
-# Internal storage path
-# Default (if not set): /sdcard
-SHRP_INTERNAL := /sdcard
-
-# External SDcard path
-# Default (if not set): /
+SHRP_DEVICE_CODE := $(DEVICE_CODENAME)
+SHRP_EDL_MODE := 0
 SHRP_EXTERNAL := /external_sd
-
-# USB OTG path
-# Default (if not set): /
+SHRP_INTERNAL := /sdcard
 SHRP_OTG := /usb_otg
-
-# Flashlight: (0 = disable, 1 = enable)
-# Default (if not set): 0
 SHRP_FLASH := 1
+SHRP_CUSTOM_FLASHLIGHT := true
+SHRP_FONP_1 := /sys/devices/virtual/camera/flash/rear_flash
+SHRP_FONP_2 := 
+SHRP_FONP_3 := 
+SHRP_FLASH_MAX_BRIGHTNESS := 1
+SHRP_REC := /dev/block/bootdevice/by-name/vendor_boot
+SHRP_AB := true
+SHRP_REC_TYPE := VENDOR_BOOT
+SHRP_DEVICE_TYPE := A/B
+SHRP_STATUSBAR_RIGHT_PADDING := 40
+SHRP_STATUSBAR_LEFT_PADDING := 40
+SHRP_EXPRESS := true
+SHRP_OFFICIAL := false
+SHRP_DARK := true
+SHRP_ALT_REBOOT := true
+LZMA_RAMDISK_TARGETS := recovery
+LZMA_COMPRESSION := -9

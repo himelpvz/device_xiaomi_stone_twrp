@@ -221,7 +221,7 @@ SHRP_REC_TYPE := Treble
 
 SHRP_DEVICE_TYPE := A/B
 
-SHRP_REC := </dev/block/bootdevice/by-name/recovery>
+SHRP_REC := /dev/block/bootdevice/by-name/recovery
 
 SHRP_HAS_RECOVERY_PARTITION := true
 

@@ -195,6 +195,7 @@ OF_USE_GREEN_LED := 0
 # screen settings
 OF_SCREEN_H := 2400
 OF_STATUS_H := 100
+
 OF_STATUS_INDENT_LEFT := 48
 OF_STATUS_INDENT_RIGHT := 48
 OF_HIDE_NOTCH := 1
@@ -203,3 +204,26 @@ OF_CLOCK_POS := 1
 # TWRP Debug Flags
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
+#SHRP flag
+
+
+
+
+SHRP_DEVICE_CODE := stone
+
+SHRP_PATH := device/xiaomi/stone
+
+
+SHRP_MAINTAINER := Himel_Pvz
+
+
+SHRP_REC_TYPE := Treble
+
+SHRP_DEVICE_TYPE := A/B
+
+SHRP_REC := </dev/block/bootdevice/by-name/recovery>
+
+SHRP_HAS_RECOVERY_PARTITION := true
+
+SHRP_AB := true
+

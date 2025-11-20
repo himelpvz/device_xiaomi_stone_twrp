@@ -206,9 +206,9 @@ TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
 # SHRP flags
-SHRP_PATH := $(DEVICE_PATH)
+SHRP_PATH := device/xiaomi/stone
 SHRP_MAINTAINER := Himel_Pvz
-SHRP_DEVICE_CODE := $(DEVICE_CODENAME)
+SHRP_DEVICE_CODE := stone
 SHRP_EDL_MODE := 0
 SHRP_EXTERNAL := /external_sd
 SHRP_INTERNAL := /sdcard

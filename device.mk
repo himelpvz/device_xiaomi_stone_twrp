@@ -32,6 +32,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Configure twrp
 $(call inherit-product, vendor/twrp/config/common.mk)
 
+# Configure ofox
+
+$(call inherit-product, $(DEVICE_PATH)/fox_peridot.mk)
+
+
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \

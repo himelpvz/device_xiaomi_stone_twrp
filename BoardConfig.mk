@@ -183,8 +183,8 @@ TW_CUSTOM_CLOCK_POS := "50"
 TW_CUSTOM_BATTERY_POS := "790"
 
 # Maintainer
-TW_DEVICE_VERSION := gawasvedraj
-OF_MAINTAINER := gawasvedraj
+TW_DEVICE_VERSION := hpstwrp
+OF_MAINTAINER := Himelpvz
 
 # Ofox flags
 FOX_VIRTUAL_AB_DEVICE := 1
@@ -215,13 +215,11 @@ SHRP_INTERNAL := /sdcard
 SHRP_OTG := /usb_otg
 SHRP_FLASH := 1
 SHRP_CUSTOM_FLASHLIGHT := true
-SHRP_FONP_1 := /sys/devices/virtual/camera/flash/rear_flash
-SHRP_FONP_2 := 
-SHRP_FONP_3 := 
+SHRP_FONP_1 := /sys/devices/virtual/camera/flash/rear_flash 
 SHRP_FLASH_MAX_BRIGHTNESS := 1
 SHRP_REC := /dev/block/bootdevice/by-name/vendor_boot
 SHRP_AB := true
-SHRP_REC_TYPE := VENDOR_BOOT
+SHRP_REC_TYPE := Treble
 SHRP_DEVICE_TYPE := A/B
 SHRP_STATUSBAR_RIGHT_PADDING := 40
 SHRP_STATUSBAR_LEFT_PADDING := 40
@@ -229,5 +227,10 @@ SHRP_EXPRESS := true
 SHRP_OFFICIAL := false
 SHRP_DARK := true
 SHRP_ALT_REBOOT := true
-LZMA_RAMDISK_TARGETS := recovery
+LZMA_RAMDISK_TARGETS := vendor_boot
 LZMA_COMPRESSION := -9
+
+# Put recovery ramdisk into vendor_boot
+TARGET_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
+BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
+TARGET_NO_RECOVERY := true

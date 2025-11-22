@@ -1,236 +1,88 @@
 #
-# Copyright (C) 2019 The TwrpBuilder Open-Source Project
+#	This file is part of the OrangeFox Recovery Project
+# 	Copyright (C) 2025 The OrangeFox Recovery Project
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+#	OrangeFox is free software: you can redistribute it and/or modify
+#	it under the terms of the GNU General Public License as published by
+#	the Free Software Foundation, either version 3 of the License, or
+#	any later version.
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#	OrangeFox is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU General Public License for more details.
 #
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# 	This software is released under GPL version 3 or any later version.
+#	See <http://www.gnu.org/licenses/>.
 #
-
-# For building with minimal manifest
-ALLOW_MISSING_DEPENDENCIES := true
-SOONG_ALLOW_MISSING_DEPENDENCIES := true
-BUILD_BROKEN_DUP_RULES := true
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
-
-# Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_stone
-TARGET_RECOVERY_DEVICE_MODULES := libinit_stone
-
-# Architecture
-TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-a
-TARGET_CPU_ABI := arm64-v8a
-TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := generic
-TARGET_CPU_VARIANT_RUNTIME := kryo300
-
-TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-a
-TARGET_2ND_CPU_ABI := armeabi-v7a
-TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := generic
-TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a75
-
-ENABLE_CPUSETS := true
-ENABLE_SCHEDBOOST := true
-
-# Bootloader
-PRODUCT_PLATFORM := holi
-TARGET_BOOTLOADER_BOARD_NAME := holi
-TARGET_NO_BOOTLOADER := true
-TARGET_USES_UEFI := true
-
-# Platform
-TARGET_BOARD_PLATFORM := xiaomi_sm6375
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno619
-QCOM_BOARD_PLATFORMS += xiaomi_sm6375
-
-# Kernel
-VENDOR_CMDLINE := "androidboot.hardware=qcom \
-                   androidboot.memcg=1 \
-		   androidboot.selinux=permissive \
-                   androidboot.usbcontroller=4e00000.dwc3 \
-                   cgroup.memory=nokmem,nosocket \
-                   loop.max_part=7 \
-                   msm_rtb.filter=0x237 \
-                   service_locator.enable=1 \
-                   swiotlb=0 \
-                   pcie_ports=compat \
-                   iptable_raw.raw_before_defrag=1 \
-                   ip6table_raw.raw_before_defrag=1 \
-                   androidboot.init_fatal_reboot_target=recovery"
-
-BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_BASE := 0x00000000
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_CLANG_COMPILE := true
-BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_BOOT_HEADER_VERSION := 4
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/$(PRODUCT_RELEASE_NAME)/kernel
-
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-BOARD_MKBOOTIMG_ARGS += --vendor_cmdline $(VENDOR_CMDLINE)
-BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE) --board ""
-
-# BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/$(PRODUCT_RELEASE_NAME)/dtb.img
-BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
-
-# Kenel dtbo
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/$(PRODUCT_RELEASE_NAME)/dtbo.img
-
-#A/B
-BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
-BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
-AB_OTA_UPDATER := true
-
-AB_OTA_PARTITIONS += \
-    boot \
-    dtbo \
-    odm \
-    product \
-    system \
-    system_ext \
-    vbmeta \
-    vbmeta_system \
-    vendor \
-    vendor_boot
-
-# Avb
-BOARD_AVB_ENABLE := true
-
-# Partitions
-BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
-BOARD_BOOTIMAGE_PARTITION_SIZE := 134217728
-BOARD_DTBOIMG_PARTITION_SIZE := 8388608
-BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
-
-# Dynamic Partition
-BOARD_SUPER_PARTITION_SIZE := 9126805504
-BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
-BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := odm system system_ext vendor product
-BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 9122611200 # BOARD_SUPER_PARTITION_SIZE - 4MB
-
-# System as root
-BOARD_ROOT_EXTRA_FOLDERS := bluetooth dsp firmware persist
-BOARD_SUPPRESS_SECURE_ERASE := true
-
-# File systems
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-
-# Workaround for error copying vendor files to recovery ramdisk
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-TARGET_COPY_OUT_VENDOR := vendor
-
-# Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-
-# Crypto
-BOARD_USES_QCOM_FBE_DECRYPTION := true
-BOARD_USES_METADATA_PARTITION := true
-PLATFORM_VERSION := 99.87.36
-PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
-PLATFORM_SECURITY_PATCH := 2099-12-31
-VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
-BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_CRYPTO_FBE := true
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
-TW_USE_FSCRYPT_POLICY := 2
-			     
-# TWRP specific build flags
-TW_THEME := portrait_hdpi
-RECOVERY_SDCARD_ON_DATA := true
-TARGET_RECOVERY_QCOM_RTC_FIX := true
-TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_EXTRA_LANGUAGES := true
-TW_INCLUDE_NTFS_3G := true
-TW_USE_TOOLBOX := true
-TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
-TW_MAX_BRIGHTNESS := 2047
-TW_DEFAULT_BRIGHTNESS := 200
-TW_NO_SCREEN_BLANK := true
-TW_EXCLUDE_APEX := true
-TW_HAS_EDL_MODE := false
-TW_INCLUDE_REPACKTOOLS := true
-TW_INCLUDE_RESETPROP := true
-TW_INCLUDE_LIBRESETPROP := true
-TW_FRAMERATE := 60
-TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko"
-TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone28/temp"
-TW_BATTERY_SYSFS_WAIT_SECONDS := 5
-TW_BACKUP_EXCLUSIONS := /data/fonts
-
-# StatusBar
-TW_STATUS_ICONS_ALIGN := center
-TW_CUSTOM_CPU_POS := "250"
-TW_CUSTOM_CLOCK_POS := "50"
-TW_CUSTOM_BATTERY_POS := "790"
-
-# Maintainer
-TW_DEVICE_VERSION := hpstwrp
-OF_MAINTAINER := Himelpvz
-
-# Ofox flags
-FOX_VIRTUAL_AB_DEVICE := 1
-OF_FLASHLIGHT_ENABLE := 0
-OF_IGNORE_LOGICAL_MOUNT_ERRORS := 1
-OF_USE_GREEN_LED := 0
+# 	Please maintain this if you use this script or any part of it
+#
 
 # screen settings
+# e.g. if the aspect ratio is 19:9 then use 19*120 (=2280)
 OF_SCREEN_H := 2400
-OF_STATUS_H := 100
-
-OF_STATUS_INDENT_LEFT := 48
-OF_STATUS_INDENT_RIGHT := 48
-OF_HIDE_NOTCH := 1
+#OF_STATUS_H := 100
+#OF_HIDE_NOTCH := 1
 OF_CLOCK_POS := 1
+OF_STATUS_INDENT_LEFT := 56
+OF_STATUS_INDENT_RIGHT := 48
+OF_ALLOW_DISABLE_NAVBAR := 0
+OF_USE_GREEN_LED := 0
 
-# TWRP Debug Flags
-TWRP_INCLUDE_LOGCAT := true
-TARGET_USES_LOGD := true
+# other stuff
+OF_QUICK_BACKUP_LIST := /boot;/data;
+OF_ENABLE_LPTOOLS := 1
+OF_NO_TREBLE_COMPATIBILITY_CHECK := 1
+OF_DYNAMIC_FULL_SIZE := 9122611200
 
-# SHRP flags
-SHRP_PATH := device/xiaomi/stone
-SHRP_MAINTAINER := Himel_Pvz
-SHRP_DEVICE_CODE := stone
-SHRP_EDL_MODE := 0
-SHRP_EXTERNAL := /external_sd
-SHRP_INTERNAL := /sdcard
-SHRP_OTG := /usb_otg
-SHRP_FLASH := 1
-SHRP_CUSTOM_FLASHLIGHT := true
-SHRP_FONP_1 := /sys/devices/virtual/camera/flash/rear_flash 
-SHRP_FLASH_MAX_BRIGHTNESS := 1
-SHRP_REC := /dev/block/bootdevice/by-name/vendor_boot
-SHRP_AB := true
-SHRP_REC_TYPE := Treble
-SHRP_DEVICE_TYPE := A/B
-SHRP_STATUSBAR_RIGHT_PADDING := 40
-SHRP_STATUSBAR_LEFT_PADDING := 40
-SHRP_EXPRESS := true
-SHRP_OFFICIAL := false
-SHRP_DARK := true
-SHRP_ALT_REBOOT := true
-LZMA_RAMDISK_TARGETS := vendor_boot
-LZMA_COMPRESSION := -9
+# number of list options before scrollbar creation
+OF_OPTIONS_LIST_NUM := 6
 
-# Put recovery ramdisk into vendor_boot
-TARGET_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
-BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
-TARGET_NO_RECOVERY := true
+# A/B with recovery partition
+OF_AB_DEVICE_WITH_RECOVERY_PARTITION := 1
+
+# ----- data format stuff -----
+# ensure that /sdcard is bind-unmounted before f2fs data repair or format
+OF_UNBIND_SDCARD_F2FS := 1
+
+# automatically wipe /metadata after data format
+OF_WIPE_METADATA_AFTER_DATAFORMAT := 1
+
+# avoid MTP issues after data format
+OF_BIND_MOUNT_SDCARD_ON_FORMAT := 1
+
+# don't spam the console with loop errors
+OF_LOOP_DEVICE_ERRORS_TO_LOG := 1
+
+# lz4 compression
+OF_USE_LZ4_COMPRESSION := 1 
+
+# build all the partition tools
+OF_ENABLE_ALL_PARTITION_TOOLS := 1
+
+ifeq ($(FIXED_DECRYPT),false)
+	# Set to 1 to skip the FBE decryption routines (prevents hanging at the Fox logo or Redmi/Mi logo)
+	OF_SKIP_FBE_DECRYPTION := 1
+endif
+
+# Set this to 1 to replace the "Swipe up" lockscreen screen with a button
+OF_USE_LOCKSCREEN_BUTTON := 1
+
+# Called just before formatting /data; only useful for devices/ROMs that have dynamic partitions
+OF_USE_DMCTL := 1
+
+# Use this to change the default time zone
+OF_DEFAULT_TIMEZONE := GMT0;BST,M3.5.0,M10.5.0
+
+# Set this to 1 to avoid the new 'NO KERNEL CONFIG' error, when using a prebuilt kernel
+OF_FORCE_PREBUILT_KERNEL := 1
+
+# Set this to 1 if your device uses aidl (as opposed to hidl) to handle boot control, particularly changing slots
+OF_USE_AIDL_BOOT_CONTROL := 1
+
+# Set this to 1 to remove toggleable option: "Reflash OrangeFox after flashing a ROM"
+# Implemented forced method using /system/bin/pre_rom_flash.sh and .../post_rom_flash.sh
+OF_NO_REFLASH_CURRENT_ORANGEFOX := 1
+
+# Set this to 1 to disable automatic rebooting after openrecoveryscript finishes
+OF_DISABLE_ORS_AUTO_REBOOT := 1

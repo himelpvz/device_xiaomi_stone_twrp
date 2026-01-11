@@ -179,8 +179,8 @@ TW_CUSTOM_CLOCK_POS := "50"
 TW_CUSTOM_BATTERY_POS := "790"
 
 # Maintainer
-TW_DEVICE_VERSION := gawasvedraj
-OF_MAINTAINER := gawasvedraj
+TW_DEVICE_VERSION := Himel_pvz
+OF_MAINTAINER := Himel_pvz
 
 # Ofox flags
 FOX_VIRTUAL_AB_DEVICE := 1
@@ -199,3 +199,36 @@ OF_CLOCK_POS := 1
 # TWRP Debug Flags
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
+
+# Shrp Flags 
+SHRP_DEVICE_CODE := sunstone 
+SHRP_PATH := device/xiaomi/sunstone
+SHRP_MAINTAINER := Himel_pvz
+SHRP_REC_TYPE := Treble
+SHRP_DEVICE_TYPE := A/B
+SHRP_REC := /dev/block/bootdevice/by-name/boot
+SHRP_HAS_RECOVERY_PARTITION := 
+SHRP_AB := true
+SHRP_EDL_MODE := 1
+
+#Mount points
+
+SHRP_INTERNAL := /sdcard
+SHRP_EXTERNAL := /external_sd
+SHRP_OTG := /usb_otg
+SHRP_FLASH := 1
+
+#SHRP Theming
+
+SHRP_NOTCH := true
+SHRP_DARK := false
+
+#Custom led paths for flashlight (Yes, idk which one actually works so i put all of them)
+
+SHRP_CUSTOM_FLASHLIGHT := true
+SHRP_FONP_1 := /sys/class/devices/virtual/camera/flashlight/rear_flash
+
+
+SHRP_FLASH_MAX_BRIGHTNESS := 1
+
+SHRP_NO_SAR_AUTOMOUNT := true

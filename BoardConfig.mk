@@ -188,7 +188,7 @@ OF_FLASHLIGHT_ENABLE := 0
 OF_IGNORE_LOGICAL_MOUNT_ERRORS := 1
 OF_USE_GREEN_LED := 0
 
-# screen settings
+# Screen settings
 OF_SCREEN_H := 2400
 OF_STATUS_H := 100
 OF_STATUS_INDENT_LEFT := 48
@@ -200,18 +200,18 @@ OF_CLOCK_POS := 1
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
-# Shrp Flags 
-SHRP_DEVICE_CODE := sunstone 
-SHRP_PATH := device/xiaomi/sunstone
+# SHRP flags
+SHRP_DEVICE_CODE := stone
+SHRP_PATH := device/xiaomi/stone
 SHRP_MAINTAINER := Himel_pvz
 SHRP_REC_TYPE := Treble
 SHRP_DEVICE_TYPE := A/B
 SHRP_REC := /dev/block/bootdevice/by-name/boot
-SHRP_HAS_RECOVERY_PARTITION := 
+SHRP_HAS_RECOVERY_PARTITION :=
 SHRP_AB := true
 SHRP_EDL_MODE := 1
 
-#Mount points
+# Mount points
 
 SHRP_INTERNAL := /sdcard
 SHRP_EXTERNAL := /external_sd

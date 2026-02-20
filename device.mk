@@ -44,14 +44,14 @@ PRODUCT_PACKAGES += \
 
 # Bootctrl
 PRODUCT_PACKAGES += \
-    bootctrl.stone.recovery \
-    android.hardware.boot@1.1-impl-qti.recovery
+    bootctrl.stone \
+    android.hardware.boot@1.1-impl-qti
 
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
 
 # SHIPPING API
-PRODUCT_SHIPPING_API_LEVEL := 30
+PRODUCT_SHIPPING_API_LEVEL := 31
 
 # VNDK API
 PRODUCT_TARGET_VNDK_VERSION := 31
@@ -94,11 +94,10 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libdisplayconfig.qti \
     libion \
     vendor.display.config@1.0 \
-    vendor.display.config@2.0 \
-    libdisplayconfig.qti 
+    vendor.display.config@2.0
 
 RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
-    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so    
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so

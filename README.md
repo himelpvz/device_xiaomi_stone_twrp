@@ -1,6 +1,6 @@
-#  TWRP Device Tree for Poco X5 5G (moonstone)
+# TWRP Device Tree for Xiaomi Stone Family
 
-The Poco X5 5G (codenamed "moonstone") is a High-range smartphone from Xiaomi. It was announced released in 2023, February 07.
+This repository contains a unified TWRP device tree for Xiaomi SM6375-based variants in the stone family (including stone/moonstone/sunstone).
 
 ## Device specifications
 

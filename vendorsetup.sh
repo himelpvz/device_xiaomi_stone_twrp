@@ -53,6 +53,13 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_USE_ZSTD_BINARY=1
 	export FOX_USE_DATE_BINARY=1
 
+	# about
+     export OF_MAINTAINER="ExxHypex"
+     export FOX_BUILD_TYPE="Unofficial"
+    
+    #export FOX_MAINTAINER_PATCH_VERSION="04"
+     export FOX_VARIANT="Unified"
+
 	# FRP
 	export OF_ENABLE_FRP_ADDON=1
 

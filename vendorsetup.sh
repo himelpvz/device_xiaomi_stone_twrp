@@ -17,7 +17,7 @@
 #
 # 	Please maintain this if you use this script or any part of it
 #
-FDEVICE="stone"
+FDEVICE="sunstone"
 
 fox_get_target_device() {
 local chkdev=$(echo "$BASH_SOURCE" | grep -w \"$FDEVICE\")
@@ -35,7 +35,7 @@ fi
 
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export LC_ALL="C"
-	export TARGET_DEVICE_ALT="sunstone,moonstone,stone"
+	export TARGET_DEVICE_ALT="sunstone, moonstone, stone"
 	export FOX_RECOVERY_SYSTEM_PARTITION="/dev/block/mapper/system"
 	export FOX_RECOVERY_VENDOR_PARTITION="/dev/block/mapper/vendor"
 	export FOX_VIRTUAL_AB_DEVICE=1
@@ -52,6 +52,13 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_DELETE_INITD_ADDON=1
 	export FOX_USE_ZSTD_BINARY=1
 	export FOX_USE_DATE_BINARY=1
+
+	# about
+     export OF_MAINTAINER="ExxHypex"
+     export FOX_BUILD_TYPE="Unofficial"
+    
+    #export FOX_MAINTAINER_PATCH_VERSION="04"
+     export FOX_VARIANT="Unified"
 
 	# FRP
 	export OF_ENABLE_FRP_ADDON=1
